@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Block : MonoBehaviour
 {
@@ -22,7 +23,7 @@ public class Block : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.touchCount > 0)
+        if (Input.touchCount > 0 && !EventSystem.current.IsPointerOverGameObject())
         {
             if (Input.GetTouch(0).position.x < (Screen.width / 2))
             {
@@ -33,7 +34,7 @@ public class Block : MonoBehaviour
                 Touch(1);
             }
         }
-        else
+        else if(!EventSystem.current.IsPointerOverGameObject())
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -56,23 +57,31 @@ public class Block : MonoBehaviour
     }
     void Touch(int touchPosition)
     {
-        float flySpeed = 3f;
+        float flySpeed = 0.15f;
+        transform.position += new Vector3(0, -0.5f, 0);
         if (touchPosition == 0)
         {
             Debug.Log("touched left");
-            transform.position += new Vector3(0, -0.5f, 0);
             flySpeed *= -1;
         }
         else
         {
             Debug.Log("touched Right");
-            transform.position += new Vector3(0, -0.5f, 0);
         }
         if(transform.position.y < disappearZone)
         {
             FindObjectOfType<SpawnerBlock>().newBlock();
-            //transform.Translate(new Vector3(flySpeed, 0, 0));
-            direction = 0.05f * flySpeed;
+            direction = flySpeed;
+            if(touchPosition == type)
+            {
+                Debug.Log("add score~");
+                GameManager.I.addScore(1);
+            }
+            else
+            {
+                Debug.Log("Game over");
+                GameManager.I.GameOver();
+            }
         }
         
     }

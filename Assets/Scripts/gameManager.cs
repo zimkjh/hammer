@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class gameManager : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
     public GameObject block;
     public GameObject panel;
@@ -12,7 +12,7 @@ public class gameManager : MonoBehaviour
     public Text scoreText;
     public Text timeText;
 
-    public static gameManager I;
+    public static GameManager I;
 
     int totalScore = 0;
     float limit = 50f;
@@ -48,9 +48,13 @@ public class gameManager : MonoBehaviour
         totalScore += score;
         scoreText.text = totalScore.ToString();
     }
-
     public void retry()
     {
         SceneManager.LoadScene("MainScene");
+    }
+    public void GameOver()
+    {
+        panel.SetActive(true);
+        Time.timeScale = 0;
     }
 }

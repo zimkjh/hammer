@@ -17,6 +17,6 @@ public class panel : MonoBehaviour
     }
     public void retry()
     {
-        gameManager.I.retry();
+        GameManager.I.retry();
     }
 }
