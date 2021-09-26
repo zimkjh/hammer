@@ -6,7 +6,8 @@ using UnityEngine.EventSystems;
 public class Block : MonoBehaviour
 {
     int type;
-    public float disappearZone = -4.0f;
+    public float disappearZone = -3.3f;
+    public float flySpeed = 0.3f;
     private float direction;
     void Start()
     {
@@ -62,18 +63,17 @@ public class Block : MonoBehaviour
     }
     void Touch(int touchPosition)
     {
-        float flySpeed = 0.15f;
-        if (touchPosition == 0)
-        {
-            flySpeed *= -1;
-        }
-        else
-        {
-        }
         if(transform.position.y < disappearZone)
         {
             FindObjectOfType<SpawnerBlock>().newBlock();
-            direction = flySpeed;
+            if(touchPosition == 0)
+            {
+                direction = -flySpeed;
+            }
+            else
+            {
+                direction = flySpeed;
+            }
             if(touchPosition == type)
             {
                 GameManager.I.addScore(1);
@@ -83,11 +83,11 @@ public class Block : MonoBehaviour
                 GameManager.I.GameOver();
             }
             type = -1;
+            transform.position += new Vector3(0, 0, 1);
         }
         else
         {
             transform.position += new Vector3(0, -0.5f, 0);
         }
-        
     }
 }
