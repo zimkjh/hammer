@@ -96,4 +96,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbe7e966acbfc43988a30a5344b1a6fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disappearZone: -2.6
+  disappearZone: -3.3

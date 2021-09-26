@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 public class Block : MonoBehaviour
 {
     int type;
-    public float disappearZone = -2.6f;
+    public float disappearZone = -4.0f;
     private float direction;
     void Start()
     {
@@ -23,28 +23,31 @@ public class Block : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.touchCount > 0 && !EventSystem.current.IsPointerOverGameObject())
+        if (type >= 0)
         {
-            if (Input.GetTouch(0).position.x < (Screen.width / 2))
+            if (Input.touchCount > 0 && !EventSystem.current.IsPointerOverGameObject())
             {
-                Touch(0);
-            }
-            else
-            {
-                Touch(1);
-            }
-        }
-        else if(!EventSystem.current.IsPointerOverGameObject())
-        {
-            if (Input.GetMouseButtonDown(0))
-            {
-                if (Input.mousePosition.x < (Screen.width / 2))
+                if (Input.GetTouch(0).position.x < (Screen.width / 2))
                 {
                     Touch(0);
                 }
                 else
                 {
                     Touch(1);
+                }
+            }
+            else if (!EventSystem.current.IsPointerOverGameObject())
+            {
+                if (Input.GetMouseButtonDown(0))
+                {
+                    if (Input.mousePosition.x < (Screen.width / 2))
+                    {
+                        Touch(0);
+                    }
+                    else
+                    {
+                        Touch(1);
+                    }
                 }
             }
         }
@@ -58,7 +61,6 @@ public class Block : MonoBehaviour
     void Touch(int touchPosition)
     {
         float flySpeed = 0.15f;
-        transform.position += new Vector3(0, -0.5f, 0);
         if (touchPosition == 0)
         {
             Debug.Log("touched left");
@@ -82,6 +84,11 @@ public class Block : MonoBehaviour
                 Debug.Log("Game over");
                 GameManager.I.GameOver();
             }
+            type = -1;
+        }
+        else
+        {
+            transform.position += new Vector3(0, -0.5f, 0);
         }
         
     }
