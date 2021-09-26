@@ -14,11 +14,11 @@ public class Block : MonoBehaviour
         type = Random.Range(0,2);
         if (type == 0)
         {
-            GetComponent<SpriteRenderer>().color = new Color(27 / 255.0f, 73 / 255.0f, 157 / 255.0f, 255 / 255.0f);
+            GetComponent<SpriteRenderer>().color = new Color(19 / 255.0f, 1 / 255.0f, 255 / 255.0f, 255 / 255.0f);
         }
         else
         {
-            GetComponent<SpriteRenderer>().color = new Color(231 / 255.0f, 31 / 255.0f, 26 / 255.0f, 255 / 255.0f);
+            GetComponent<SpriteRenderer>().color = new Color(254 / 255.0f, 3 / 255.0f, 0 / 255.0f, 255 / 255.0f);
         }
     }
     private void Update()
@@ -27,11 +27,13 @@ public class Block : MonoBehaviour
         {
             if (Input.touchCount > 0 && !EventSystem.current.IsPointerOverGameObject())
             {
-                if (Input.GetTouch(0).position.x < (Screen.width / 2))
+                Touch touch = Input.GetTouch(0);
+                
+                if (touch.phase == TouchPhase.Began && touch.position.x < (Screen.width / 2))
                 {
                     Touch(0);
                 }
-                else
+                else if(touch.phase == TouchPhase.Began && touch.position.x >= (Screen.width / 2))
                 {
                     Touch(1);
                 }
@@ -63,12 +65,10 @@ public class Block : MonoBehaviour
         float flySpeed = 0.15f;
         if (touchPosition == 0)
         {
-            Debug.Log("touched left");
             flySpeed *= -1;
         }
         else
         {
-            Debug.Log("touched Right");
         }
         if(transform.position.y < disappearZone)
         {
@@ -76,12 +76,10 @@ public class Block : MonoBehaviour
             direction = flySpeed;
             if(touchPosition == type)
             {
-                Debug.Log("add score~");
                 GameManager.I.addScore(1);
             }
             else
             {
-                Debug.Log("Game over");
                 GameManager.I.GameOver();
             }
             type = -1;
