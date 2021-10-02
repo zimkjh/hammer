@@ -87,10 +87,7 @@ public class Block : MonoBehaviour
             }
             type = -1;
             transform.position += new Vector3(0, 0, 1);
-            //birdAnimatorList[touchPosition].SetInteger("condition", 1);
-            //GetComponent<Animator>().GetBehaviour<BirdAnim>().birdEating();
-            Debug.Log("bird Eating animation~");
-            FindObjectOfType<BirdAnim>().birdEating();
+            GameObject.Find("bird" + touchPosition.ToString()).GetComponent<BirdAnim>().birdEating();
         }
         else
         {

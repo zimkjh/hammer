@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BirdAnim : MonoBehaviour
 {
+    public int type;
     Animator animator;
     private void Start()
     {
@@ -11,7 +12,6 @@ public class BirdAnim : MonoBehaviour
     }
     public void birdEating()
     {
-        Debug.Log("chane condition 1");
         animator.SetInteger("condition", 1);
     }
 }

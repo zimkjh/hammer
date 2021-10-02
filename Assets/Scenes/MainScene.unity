@@ -485,7 +485,7 @@ GameObject:
   - component: {fileID: 381132508}
   - component: {fileID: 381132509}
   m_Layer: 0
-  m_Name: redbird
+  m_Name: bird1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -555,7 +555,7 @@ Transform:
   m_LocalScale: {x: 0.8443, y: 0.8443, z: 0.8443}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &381132508
 Animator:
@@ -588,6 +588,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 511c23473a6fa42acb1d417e1499913c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 1
 --- !u!1 &401573695
 GameObject:
   m_ObjectHideFlags: 0
@@ -1199,7 +1200,7 @@ Transform:
   m_LocalScale: {x: 0.71537125, y: 0.71537125, z: 0.71537125}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &812317379
 GameObject:
@@ -1282,7 +1283,7 @@ Transform:
   m_LocalScale: {x: 0.79528534, y: 0.79528534, z: 0.79528534}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &815485139
 GameObject:
@@ -1333,7 +1334,7 @@ GameObject:
   - component: {fileID: 1007801404}
   - component: {fileID: 1007801403}
   m_Layer: 0
-  m_Name: bluebug_eat
+  m_Name: bugEaten0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1379,7 +1380,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 3ac642a455de940a7948a7642f4f45d2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1399,7 +1400,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1007801402}
   m_LocalRotation: {x: 0, y: 0, z: 0.18011573, w: 0.98364544}
-  m_LocalPosition: {x: 5.52, y: -2.29, z: 0}
+  m_LocalPosition: {x: -0.52, y: -2.29, z: 0}
   m_LocalScale: {x: -1.1, y: 1.1, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1979,8 +1980,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1891341420}
   - component: {fileID: 1891341419}
+  - component: {fileID: 1891341421}
+  - component: {fileID: 1891341422}
   m_Layer: 0
-  m_Name: bluebird
+  m_Name: bird0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2050,8 +2053,40 @@ Transform:
   m_LocalScale: {x: 0.8483, y: 0.8483, z: 0.8483}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1891341421
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1891341418}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 73c188d4864c04d3ea7c1799be661535, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1891341422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1891341418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 511c23473a6fa42acb1d417e1499913c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
 --- !u!1 &1899638795
 GameObject:
   m_ObjectHideFlags: 0
@@ -2142,7 +2177,7 @@ GameObject:
   - component: {fileID: 1936221915}
   - component: {fileID: 1936221914}
   m_Layer: 0
-  m_Name: redbug_eat
+  m_Name: bugEaten1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2188,7 +2223,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: b6296824a08164648857f78e08ea81cc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2208,7 +2243,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1936221913}
   m_LocalRotation: {x: -0, y: -0, z: -0.1801192, w: 0.9836448}
-  m_LocalPosition: {x: 1.58, y: -0.31, z: 0}
+  m_LocalPosition: {x: 0.52, y: -2.28, z: 0}
   m_LocalScale: {x: 1.1, y: 1.1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
