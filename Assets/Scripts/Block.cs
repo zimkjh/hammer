@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -6,20 +5,22 @@ using UnityEngine.EventSystems;
 public class Block : MonoBehaviour
 {
     int type;
-    public float disappearZone = -3.3f;
+    public float disappearZone = -2.2f;
     public float flySpeed = 0.3f;
+    public List<Sprite> bugImageList;
     private float direction;
     void Start()
     {
         direction = 0;
         type = Random.Range(0,2);
+        SpriteRenderer spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         if (type == 0)
         {
-            GetComponent<SpriteRenderer>().color = new Color(19 / 255.0f, 1 / 255.0f, 255 / 255.0f, 255 / 255.0f);
+            spriteRenderer.sprite = bugImageList[0];
         }
         else
         {
-            GetComponent<SpriteRenderer>().color = new Color(254 / 255.0f, 3 / 255.0f, 0 / 255.0f, 255 / 255.0f);
+            spriteRenderer.sprite = bugImageList[1];
         }
     }
     private void Update()
