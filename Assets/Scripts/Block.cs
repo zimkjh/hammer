@@ -8,6 +8,8 @@ public class Block : MonoBehaviour
     public float disappearZone = -2.2f;
     public float flySpeed = 0.3f;
     public List<Sprite> bugImageList;
+    public List<Sprite> birdEatingImageList;
+    public List<Sprite> bugEatenImageList;
     private float direction;
     void Start()
     {
@@ -85,6 +87,10 @@ public class Block : MonoBehaviour
             }
             type = -1;
             transform.position += new Vector3(0, 0, 1);
+            //birdAnimatorList[touchPosition].SetInteger("condition", 1);
+            //GetComponent<Animator>().GetBehaviour<BirdAnim>().birdEating();
+            Debug.Log("bird Eating animation~");
+            FindObjectOfType<BirdAnim>().birdEating();
         }
         else
         {
