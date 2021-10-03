@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public List<GameObject> blockList;
     public Text scoreText;
     public Text timeText;
+    public bool feverTime;
 
     public static GameManager I;
 
@@ -43,6 +44,10 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 0;
         }
         timeText.text = limit.ToString("N2");
+        if(totalScore > 10)
+        {
+            feverTime = true;
+        }
     }
     public void addScore(int score)
     {

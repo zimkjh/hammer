@@ -7,11 +7,15 @@ public class Block : MonoBehaviour
     int type;
     public float disappearZone = -2.2f;
     public List<Sprite> bugImageList;
+    public Sprite feverBugImage;
     public List<GameObject> bugEatenList;
+    public List<GameObject> feverBugEatenList;
+    private SpriteRenderer spriteRenderer; 
     void Start()
     {
         type = Random.Range(0,2);
-        SpriteRenderer spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        //SpriteRenderer spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         if (type == 0)
         {
             spriteRenderer.sprite = bugImageList[0];
@@ -53,13 +57,17 @@ public class Block : MonoBehaviour
                 }
             }
         }
+        if(GameManager.I.feverTime == true)
+        {
+            spriteRenderer.sprite = feverBugImage;
+        }
     }
-    void Touch(int touchPosition)
+    private void Touch(int touchPosition)
     {
         if(transform.position.y < disappearZone)
         {
             FindObjectOfType<SpawnerBlock>().newBlock();
-            if(touchPosition == type)
+            if(touchPosition == type || GameManager.I.feverTime)
             {
                 GameManager.I.addScore(1);
             }
@@ -70,7 +78,14 @@ public class Block : MonoBehaviour
             type = -1;
             transform.position += new Vector3(0, 0, 1);
             GameObject.Find("bird" + touchPosition.ToString()).GetComponent<BirdAnim>().birdEating();
-            Instantiate(bugEatenList[touchPosition]);
+            if (GameManager.I.feverTime)
+            {
+                Instantiate(feverBugEatenList[touchPosition]);
+            }
+            else
+            {
+                Instantiate(bugEatenList[touchPosition]);
+            }
             Destroy(gameObject);
         }
         else
