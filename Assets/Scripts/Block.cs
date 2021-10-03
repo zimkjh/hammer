@@ -15,14 +15,7 @@ public class Block : MonoBehaviour
     {
         type = Random.Range(0,2);
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-        if (type == 0)
-        {
-            spriteRenderer.sprite = bugImageList[0];
-        }
-        else
-        {
-            spriteRenderer.sprite = bugImageList[1];
-        }
+        spriteRenderer.sprite = bugImageList[type];
     }
     private void Update()
     {
@@ -60,6 +53,10 @@ public class Block : MonoBehaviour
         {
             spriteRenderer.sprite = feverBugImage;
         }
+        else
+        {
+            spriteRenderer.sprite = bugImageList[type];
+        }
     }
     private void Touch(int touchPosition)
     {
@@ -74,7 +71,6 @@ public class Block : MonoBehaviour
             {
                 GameManager.I.GameOver();
             }
-            type = -1;
             transform.position += new Vector3(0, 0, 1);
             GameObject.Find("bird" + touchPosition.ToString()).GetComponent<BirdAnim>().birdEating();
             if (GameManager.I.feverTime)

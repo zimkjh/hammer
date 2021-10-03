@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     public Text scoreText;
     public Text timeText;
     public bool feverTime;
+    private float feverTimer;
+    private bool startedFeverTime;
 
     public static GameManager I;
 
@@ -33,6 +35,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1.0f;
         limit = 50.0f;
         totalScore = 0;
+        startedFeverTime = false;
     }
     void Update()
     {
@@ -44,9 +47,20 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 0;
         }
         timeText.text = limit.ToString("N2");
-        if(totalScore > 10)
-        {
+        if (totalScore == 10 && !startedFeverTime) { 
             feverTime = true;
+            feverBird(feverTime);
+            startedFeverTime = true;
+        }
+        if (feverTime == true)
+        {
+            feverTimer += Time.deltaTime;
+        }
+        if(feverTimer > 3f)
+        {
+            feverTime = false;
+            feverBird(feverTime);
+            feverTimer = 0;
         }
     }
     public void addScore(int score)
@@ -62,5 +76,12 @@ public class GameManager : MonoBehaviour
     {
         panel.SetActive(true);
         Time.timeScale = 0;
+    }
+    private void feverBird(bool isFever)
+    {
+        GameObject.Find("bird" + 0).GetComponent<Renderer>().enabled = !isFever;
+        GameObject.Find("bird" + 1).GetComponent<Renderer>().enabled = !isFever;
+        GameObject.Find("bird" + 100).GetComponent<Renderer>().enabled = isFever;
+        GameObject.Find("bird" + 101).GetComponent<Renderer>().enabled = isFever;
     }
 }

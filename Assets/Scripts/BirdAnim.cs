@@ -14,14 +14,19 @@ public class BirdAnim : MonoBehaviour
     {
         animator.SetInteger("condition", 1);
     }
-    private void Update()
-    {
-        if(GameManager.I.feverTime == true)
-        {
-            GameObject.Find("bird" + 0).GetComponent<Renderer>().enabled = false;
-            GameObject.Find("bird" + 1).GetComponent<Renderer>().enabled = false;
-            GameObject.Find("bird" + 100).GetComponent<Renderer>().enabled = true;
-            GameObject.Find("bird" + 101).GetComponent<Renderer>().enabled = true;
-        }
-    }
+    //private void Update()
+    //{
+    //    if(GameManager.I.feverTime == true)
+    //    {
+    //        GameObject.Find("bird" + 0).GetComponent<Renderer>().enabled = false;
+    //        GameObject.Find("bird" + 1).GetComponent<Renderer>().enabled = false;
+    //        GameObject.Find("bird" + 100).GetComponent<Renderer>().enabled = true;
+    //        GameObject.Find("bird" + 101).GetComponent<Renderer>().enabled = true;
+    //    } else {
+    //        GameObject.Find("bird" + 0).GetComponent<Renderer>().enabled = true;
+    //        GameObject.Find("bird" + 1).GetComponent<Renderer>().enabled = true;
+    //        GameObject.Find("bird" + 100).GetComponent<Renderer>().enabled = false;
+    //        GameObject.Find("bird" + 101).GetComponent<Renderer>().enabled = false;
+    //    }
+    //}
 }
