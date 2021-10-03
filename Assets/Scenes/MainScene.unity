@@ -2012,7 +2012,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3716b85f51020473fa7bf9e2ea3baa16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blockNumber: 15
   block: {fileID: 4734822495995431689, guid: 5dd5ea4b511fa4de88ea78fec9941306, type: 3}
 --- !u!4 &1734163512
 Transform:

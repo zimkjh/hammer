@@ -14,7 +14,6 @@ public class Block : MonoBehaviour
     void Start()
     {
         type = Random.Range(0,2);
-        //SpriteRenderer spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         if (type == 0)
         {
