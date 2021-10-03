@@ -6,14 +6,10 @@ public class Block : MonoBehaviour
 {
     int type;
     public float disappearZone = -2.2f;
-    public float flySpeed = 0.3f;
     public List<Sprite> bugImageList;
-    public List<Sprite> birdEatingImageList;
-    public List<Sprite> bugEatenImageList;
-    private float direction;
+    public List<GameObject> bugEatenList;
     void Start()
     {
-        direction = 0;
         type = Random.Range(0,2);
         SpriteRenderer spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         if (type == 0)
@@ -57,26 +53,12 @@ public class Block : MonoBehaviour
                 }
             }
         }
-        if(transform.position.x < -4f || transform.position.x > 4f)
-        {
-            Destroy(gameObject);
-        }
-        transform.position += new Vector3(direction, 0, 0);
-        //transform.localScale = new Vector3(0.9f, 1, 1);
     }
     void Touch(int touchPosition)
     {
         if(transform.position.y < disappearZone)
         {
             FindObjectOfType<SpawnerBlock>().newBlock();
-            if(touchPosition == 0)
-            {
-                direction = -flySpeed;
-            }
-            else
-            {
-                direction = flySpeed;
-            }
             if(touchPosition == type)
             {
                 GameManager.I.addScore(1);
@@ -88,6 +70,8 @@ public class Block : MonoBehaviour
             type = -1;
             transform.position += new Vector3(0, 0, 1);
             GameObject.Find("bird" + touchPosition.ToString()).GetComponent<BirdAnim>().birdEating();
+            Instantiate(bugEatenList[touchPosition]);
+            Destroy(gameObject);
         }
         else
         {
