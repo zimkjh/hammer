@@ -10,7 +10,6 @@ public class GameManager : MonoBehaviour
     public GameObject panel;
     public List<GameObject> blockList;
     public Text scoreText;
-    public Text timeText;
     public bool feverTime;
     public Text maxScoreText;
     private float feverTimer;
@@ -50,7 +49,8 @@ public class GameManager : MonoBehaviour
             panel.SetActive(true);
             Time.timeScale = 0;
         }
-        if (totalScore == 10 && !startedFeverTime) { 
+        if (totalScore == 10 && !startedFeverTime)
+        {
             feverTime = true;
             feverBird(feverTime);
             startedFeverTime = true;
@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
         {
             feverTimer += Time.deltaTime;
         }
-        if(feverTimer > 3f)
+        if (feverTimer > 3f)
         {
             feverTime = false;
             feverBird(feverTime);
@@ -79,7 +79,7 @@ public class GameManager : MonoBehaviour
     {
         panel.SetActive(true);
         Time.timeScale = 0;
-        if(savedMaxScore < totalScore)
+        if (savedMaxScore < totalScore)
         {
             PlayerPrefs.SetInt(maxScoreKey, totalScore);
             savedMaxScore = totalScore;
