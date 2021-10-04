@@ -12,8 +12,11 @@ public class GameManager : MonoBehaviour
     public Text scoreText;
     public Text timeText;
     public bool feverTime;
+    public Text maxScoreText;
     private float feverTimer;
     private bool startedFeverTime;
+    private string maxScoreKey = "maxScore";
+    private int savedMaxScore = 0;
 
     public static GameManager I;
 
@@ -23,6 +26,8 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         I = this;
+        savedMaxScore = PlayerPrefs.GetInt(maxScoreKey, 0);
+        maxScoreText.text = savedMaxScore.ToString();
     }
 
     void Start()
@@ -45,7 +50,6 @@ public class GameManager : MonoBehaviour
             panel.SetActive(true);
             Time.timeScale = 0;
         }
-        timeText.text = limit.ToString("N2");
         if (totalScore == 10 && !startedFeverTime) { 
             feverTime = true;
             feverBird(feverTime);
@@ -75,6 +79,12 @@ public class GameManager : MonoBehaviour
     {
         panel.SetActive(true);
         Time.timeScale = 0;
+        if(savedMaxScore < totalScore)
+        {
+            PlayerPrefs.SetInt(maxScoreKey, totalScore);
+            savedMaxScore = totalScore;
+            maxScoreText.text = totalScore.ToString();
+        }
     }
     private void feverBird(bool isFever)
     {
