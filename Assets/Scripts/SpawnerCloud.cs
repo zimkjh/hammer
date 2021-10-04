@@ -7,12 +7,11 @@ public class SpawnerCloud : MonoBehaviour
     public GameObject[] cloudList;
     void Start()
     {
-        Instantiate(cloudList[Random.Range(0, cloudList.Length)], new Vector3(4, Random.Range(-2f, -1f), 0), Quaternion.identity);
+        Instantiate(cloudList[Random.Range(0, cloudList.Length)], new Vector3(4, Random.Range(-1f, 4f), 0), Quaternion.identity);
+        Instantiate(cloudList[Random.Range(0, cloudList.Length)], new Vector3(6, Random.Range(-1f, 4f), 0), Quaternion.identity);
     }
-
-    void Update()
+    public void newCloud()
     {
-        Debug.Log(transform.position);// TODO : move cloud!!
-        transform.position -= new Vector3(Random.Range(0f, 0.5f), 0, 0);
+        Instantiate(cloudList[Random.Range(0, cloudList.Length)], new Vector3(4, Random.Range(-1f, 4f), 0), Quaternion.identity);
     }
 }

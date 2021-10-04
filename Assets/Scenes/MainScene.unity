@@ -977,7 +977,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &622382374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -991,10 +991,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cloudList:
-  - {fileID: 9110366179027436819, guid: d892a0ff2af364db8b3325984b707283, type: 3}
-  - {fileID: 7891806174135613194, guid: 1fac394934654473c9c02c9f6093daff, type: 3}
-  - {fileID: 5843898257811022181, guid: 1bab4a20c87c14832b0dcb1e3e75d66c, type: 3}
-  - {fileID: 3182493478776288096, guid: d15852e65e2d04ababd43c852986a79e, type: 3}
+  - {fileID: 353059255760187229, guid: d892a0ff2af364db8b3325984b707283, type: 3}
+  - {fileID: 7206174574154545154, guid: 1fac394934654473c9c02c9f6093daff, type: 3}
+  - {fileID: 3152704780174605322, guid: 1bab4a20c87c14832b0dcb1e3e75d66c, type: 3}
 --- !u!4 &622382375
 Transform:
   m_ObjectHideFlags: 0
