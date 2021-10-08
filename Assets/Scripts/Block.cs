@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 public class Block : MonoBehaviour
 {
     int type;
-    public float disappearZone = -2.2f;
+    public float disappearZone = -1.7f;
     public List<Sprite> bugImageList;
     public Sprite feverBugImage;
     public List<GameObject> bugEatenList;
@@ -85,7 +85,7 @@ public class Block : MonoBehaviour
         }
         else
         {
-            transform.position += new Vector3(0, -0.5f, 0);
+            transform.position += new Vector3(0, -0.4f, 0);
         }
     }
 }
