@@ -66,7 +66,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            feverTrigger -= 0.01f * Mathf.Sqrt(totalScore);
+            feverTrigger -= 0.02f * Mathf.Sqrt(totalScore);
             FeverGauge.I.changePercent(feverTrigger);
         }
         if (feverTimer <= 0f)
