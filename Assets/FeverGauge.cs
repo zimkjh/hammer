@@ -10,6 +10,11 @@ public class FeverGauge : MonoBehaviour
     private float scaleX = 5.132686f;
     private float scaleY = 0.1285504f;
     public float percent = 0;
+    public static FeverGauge I;
+    private void Awake()
+    {
+        I = this;
+    }
     public void changePercent(float percentVal)
     {
         percent = percentVal;
@@ -20,7 +25,8 @@ public class FeverGauge : MonoBehaviour
     }
     void Update()
     {
-        transform.localScale = new Vector3(scaleX * percent / 100f, scaleY, 0);
-        transform.position = new Vector3(leftX + (rightX - leftX) * percent / 200, centerY, 0);
+        float nowPercent = Mathf.Min(percent, 100);
+        transform.localScale = new Vector3(scaleX * nowPercent/ 100f, scaleY, 0);
+        transform.position = new Vector3(leftX + (rightX - leftX) * nowPercent / 200, centerY, 0);
     }
 }

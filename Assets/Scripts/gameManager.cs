@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     private bool startedFeverTime;
     private string maxScoreKey = "maxScore";
     private int savedMaxScore = 0;
+    private float feverTrigger;
 
     public static GameManager I;
 
@@ -39,6 +40,8 @@ public class GameManager : MonoBehaviour
         limit = 50.0f;
         totalScore = 0;
         startedFeverTime = false;
+        feverTimer = 3f;
+        feverTrigger = 0f;
     }
     void Update()
     {
@@ -49,7 +52,7 @@ public class GameManager : MonoBehaviour
             panel.SetActive(true);
             Time.timeScale = 0;
         }
-        if (totalScore == 10 && !startedFeverTime)
+        if (feverTrigger > 100f && !startedFeverTime)
         {
             feverTime = true;
             feverBird(feverTime);
@@ -57,13 +60,21 @@ public class GameManager : MonoBehaviour
         }
         if (feverTime == true)
         {
-            feverTimer += Time.deltaTime;
+            feverTrigger = 0;
+            feverTimer -= Time.deltaTime;
+            FeverGauge.I.changePercent(feverTimer / 3 * 100f);
         }
-        if (feverTimer > 3f)
+        else
+        {
+            feverTrigger -= 0.01f * Mathf.Sqrt(totalScore);
+            FeverGauge.I.changePercent(feverTrigger);
+        }
+        if (feverTimer <= 0f)
         {
             feverTime = false;
             feverBird(feverTime);
-            feverTimer = 0;
+            feverTimer = 3f;
+            startedFeverTime = false;
         }
     }
     public void addScore(int score)
@@ -71,12 +82,18 @@ public class GameManager : MonoBehaviour
         totalScore += score;
         scoreText.text = totalScore.ToString();
     }
+    public void addFeverTrigger()
+    {
+        feverTrigger += 10f;
+    }
     public void retry()
     {
         SceneManager.LoadScene("MainScene");
     }
     public void GameOver()
     {
+        GameObject.Find("feverbar").GetComponent<Renderer>().enabled = false;
+        GameObject.Find("feverGauge").GetComponent<Renderer>().enabled = false;
         panel.SetActive(true);
         Time.timeScale = 0;
         if (savedMaxScore < totalScore)

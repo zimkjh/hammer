@@ -79,6 +79,7 @@ public class Block : MonoBehaviour
             }
             else
             {
+                GameManager.I.addFeverTrigger();
                 Instantiate(bugEatenList[touchPosition]);
             }
             Destroy(gameObject);
