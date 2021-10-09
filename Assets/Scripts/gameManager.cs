@@ -11,11 +11,11 @@ public class GameManager : MonoBehaviour
     public List<GameObject> blockList;
     public Text scoreText;
     public bool feverTime;
-    public Text maxScoreText;
+    public Text leaderBoardText;
     private float feverTimer;
     private bool startedFeverTime;
     private string maxScoreKey = "maxScore";
-    private int savedMaxScore = 0;
+    private List<int> savedMaxScores = new List<int> { 0, 0, 0, 0, 0 };
     private float feverTrigger;
 
     public static GameManager I;
@@ -26,8 +26,11 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         I = this;
-        savedMaxScore = PlayerPrefs.GetInt(maxScoreKey, 0);
-        maxScoreText.text = savedMaxScore.ToString();
+        savedMaxScores = new List<int>();
+        for(int i = 0; i < 5; i++)
+        {
+            savedMaxScores.Add(PlayerPrefs.GetInt(maxScoreKey + "_" + i, 0));
+        }
     }
 
     void Start()
@@ -94,13 +97,31 @@ public class GameManager : MonoBehaviour
     {
         GameObject.Find("feverbar").GetComponent<Renderer>().enabled = false;
         GameObject.Find("feverGauge").GetComponent<Renderer>().enabled = false;
+        GameObject.Find("MainScore").SetActive(false); 
         panel.SetActive(true);
         Time.timeScale = 0;
-        if (savedMaxScore < totalScore)
+        if (savedMaxScores[4] < totalScore)
         {
-            PlayerPrefs.SetInt(maxScoreKey, totalScore);
-            savedMaxScore = totalScore;
-            maxScoreText.text = totalScore.ToString();
+            savedMaxScores[4] = totalScore;
+            savedMaxScores.Sort();
+            savedMaxScores.Reverse();
+            for (int i = 0; i < 5; i++)
+            {
+                PlayerPrefs.SetInt(maxScoreKey + "_" + i, savedMaxScores[i]);
+            }
+        }
+        leaderBoardText.text = "";
+        List<string> leaderBoardEng = new List<string> { "st", "nd", "rd", "th", "th" };
+        for (int i = 0; i < 5; i++)
+        {
+            leaderBoardText.text += ((i + 1).ToString() + leaderBoardEng[i] + " ");
+            int scoreLength = savedMaxScores[i].ToString().Length;
+            leaderBoardText.text += new string('.', 11 - scoreLength);
+            leaderBoardText.text += (" " + savedMaxScores[i]);
+            if(i < 4)
+            {
+                leaderBoardText.text += "\n";
+            }
         }
     }
     private void feverBird(bool isFever)
