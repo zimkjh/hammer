@@ -19,17 +19,16 @@ public class Block : MonoBehaviour
     }
     private void Update()
     {
-        if (type >= 0)
+        if (!GameManager.I.isGameOver)
         {
             if (Input.touchCount > 0 && !EventSystem.current.IsPointerOverGameObject())
             {
                 Touch touch = Input.GetTouch(0);
-                
                 if (touch.phase == TouchPhase.Began && touch.position.x < (Screen.width / 2))
                 {
                     Touch(0);
                 }
-                else if(touch.phase == TouchPhase.Began && touch.position.x >= (Screen.width / 2))
+                else if (touch.phase == TouchPhase.Began && touch.position.x >= (Screen.width / 2))
                 {
                     Touch(1);
                 }

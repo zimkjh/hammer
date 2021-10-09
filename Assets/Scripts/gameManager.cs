@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     private string maxScoreKey = "maxScore";
     private List<int> savedMaxScores = new List<int> { 0, 0, 0, 0, 0 };
     private float feverTrigger;
+    public bool isGameOver = false;
 
     public static GameManager I;
 
@@ -45,6 +46,7 @@ public class GameManager : MonoBehaviour
         startedFeverTime = false;
         feverTimer = 3f;
         feverTrigger = 0f;
+        isGameOver = false;
     }
     void Update()
     {
@@ -95,6 +97,7 @@ public class GameManager : MonoBehaviour
     }
     public void GameOver()
     {
+        isGameOver = true;
         GameObject.Find("feverbar").GetComponent<Renderer>().enabled = false;
         GameObject.Find("feverGauge").GetComponent<Renderer>().enabled = false;
         GameObject.Find("MainScore").SetActive(false); 
