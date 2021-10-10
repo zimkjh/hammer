@@ -441,6 +441,7 @@ MonoBehaviour:
   scoreText: {fileID: 1554087135}
   feverTime: 0
   leaderBoardText: {fileID: 524433238}
+  isGameOver: 0
 --- !u!4 &120854840
 Transform:
   m_ObjectHideFlags: 0
