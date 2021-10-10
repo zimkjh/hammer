@@ -16,7 +16,6 @@ public class BugEaten : MonoBehaviour
         {
             rb.velocity = new Vector2(2f, 1f);
         }
-        //Object.Destroy(gameObject, 0.2f);
         Object.Destroy(gameObject, 0.3f);
     }
 }

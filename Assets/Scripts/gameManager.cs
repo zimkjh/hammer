@@ -87,6 +87,10 @@ public class GameManager : MonoBehaviour
         totalScore += score;
         scoreText.text = totalScore.ToString();
     }
+    public int getScore()
+    {
+        return totalScore;
+    }
     public void addFeverTrigger()
     {
         feverTrigger += 10f;
