@@ -4,29 +4,31 @@ using UnityEngine;
 
 public class BirdAnim : MonoBehaviour
 {
-    public int type;
-    Animator animator;
-    private void Start()
+    public static BirdAnim I;
+    public Sprite bird0_end;
+    public Sprite bird1_end;
+    public Sprite bird100_end;
+    public Sprite bird101_end;
+    private void Awake()
     {
-        animator = GetComponent<Animator>();
+        I = this;
     }
-    public void birdEating()
+    public void birdEating(string birdNumber)
     {
-        animator.SetInteger("condition", 1);
+        GameObject.Find("bird" + birdNumber).GetComponent<Animator>().SetInteger("condition", 1);
     }
-    //private void Update()
-    //{
-    //    if(GameManager.I.feverTime == true)
-    //    {
-    //        GameObject.Find("bird" + 0).GetComponent<Renderer>().enabled = false;
-    //        GameObject.Find("bird" + 1).GetComponent<Renderer>().enabled = false;
-    //        GameObject.Find("bird" + 100).GetComponent<Renderer>().enabled = true;
-    //        GameObject.Find("bird" + 101).GetComponent<Renderer>().enabled = true;
-    //    } else {
-    //        GameObject.Find("bird" + 0).GetComponent<Renderer>().enabled = true;
-    //        GameObject.Find("bird" + 1).GetComponent<Renderer>().enabled = true;
-    //        GameObject.Find("bird" + 100).GetComponent<Renderer>().enabled = false;
-    //        GameObject.Find("bird" + 101).GetComponent<Renderer>().enabled = false;
-    //    }
-    //}
+    public void feverBird(bool isFever)
+    {
+        GameObject.Find("bird" + 0).GetComponent<Renderer>().enabled = !isFever;
+        GameObject.Find("bird" + 1).GetComponent<Renderer>().enabled = !isFever;
+        GameObject.Find("bird" + 100).GetComponent<Renderer>().enabled = isFever;
+        GameObject.Find("bird" + 101).GetComponent<Renderer>().enabled = isFever;
+    }
+    public void gameOverBird()
+    {
+        GameObject.Find("bird" + 0).GetComponent<Animator>().enabled = false;
+        GameObject.Find("bird" + 1).GetComponent<Animator>().enabled = false;
+        GameObject.Find("bird" + 0).GetComponent<SpriteRenderer>().sprite = bird0_end;
+        GameObject.Find("bird" + 1).GetComponent<SpriteRenderer>().sprite = bird1_end;
+    }
 }

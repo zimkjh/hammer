@@ -918,7 +918,6 @@ GameObject:
   - component: {fileID: 381132507}
   - component: {fileID: 381132506}
   - component: {fileID: 381132508}
-  - component: {fileID: 381132509}
   m_Layer: 0
   m_Name: bird1
   m_TagString: Untagged
@@ -1011,19 +1010,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &381132509
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 381132505}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 511c23473a6fa42acb1d417e1499913c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 1
 --- !u!1 &401573695
 GameObject:
   m_ObjectHideFlags: 0
@@ -2598,7 +2584,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 511c23473a6fa42acb1d417e1499913c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
+  bird0_end: {fileID: 21300000, guid: 48a0f3f22f7f14d01854c036029909b1, type: 3}
+  bird1_end: {fileID: 21300000, guid: 2aac9908f61514f928690dcd1ea8c78c, type: 3}
+  bird100_end: {fileID: 21300000, guid: aa3b04a57aece46cea91de7c0bce553a, type: 3}
+  bird101_end: {fileID: 21300000, guid: aa3b04a57aece46cea91de7c0bce553a, type: 3}
 --- !u!1 &2099952159
 GameObject:
   m_ObjectHideFlags: 0

@@ -19,7 +19,7 @@ public class Block : MonoBehaviour
     }
     private void Update()
     {
-        if (!GameManager.I.isGameOver)
+        if (!GameManager.I.isGameOver && !GameManager.I.isReady)
         {
             if (Input.touchCount > 0 && !EventSystem.current.IsPointerOverGameObject())
             {
@@ -62,7 +62,11 @@ public class Block : MonoBehaviour
         if(transform.position.y < disappearZone)
         {
             FindObjectOfType<SpawnerBlock>().newBlock();
-            if(touchPosition == type || GameManager.I.feverTime)
+            if (GameManager.I.feverTime)
+            {
+                GameManager.I.addScore(2);
+            }
+            else if (touchPosition == type)
             {
                 GameManager.I.addScore(1);
             }
@@ -71,7 +75,7 @@ public class Block : MonoBehaviour
                 GameManager.I.GameOver();
             }
             transform.position += new Vector3(0, 0, 1);
-            GameObject.Find("bird" + touchPosition.ToString()).GetComponent<BirdAnim>().birdEating();
+            BirdAnim.I.birdEating(touchPosition.ToString());
             if (GameManager.I.feverTime)
             {
                 Instantiate(feverBugEatenList[touchPosition]);

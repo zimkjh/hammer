@@ -71,7 +71,7 @@ public class GameManager : MonoBehaviour
         if (feverTrigger > 100f && !startedFeverTime)
         {
             feverTime = true;
-            feverBird(feverTime);
+            BirdAnim.I.feverBird(feverTime);
             startedFeverTime = true;
         }
         if (feverTime == true)
@@ -88,7 +88,7 @@ public class GameManager : MonoBehaviour
         if (feverTimer <= 0f)
         {
             feverTime = false;
-            feverBird(feverTime);
+            BirdAnim.I.feverBird(feverTime);
             feverTimer = 3f;
             startedFeverTime = false;
         }
@@ -112,6 +112,7 @@ public class GameManager : MonoBehaviour
     }
     public void GameOver()
     {
+        BirdAnim.I.gameOverBird();
         isGameOver = true;
         GameObject.Find("feverbar").GetComponent<Renderer>().enabled = false;
         GameObject.Find("feverGauge").GetComponent<Renderer>().enabled = false;
@@ -141,12 +142,5 @@ public class GameManager : MonoBehaviour
                 leaderBoardText.text += "\n";
             }
         }
-    }
-    private void feverBird(bool isFever)
-    {
-        GameObject.Find("bird" + 0).GetComponent<Renderer>().enabled = !isFever;
-        GameObject.Find("bird" + 1).GetComponent<Renderer>().enabled = !isFever;
-        GameObject.Find("bird" + 100).GetComponent<Renderer>().enabled = isFever;
-        GameObject.Find("bird" + 101).GetComponent<Renderer>().enabled = isFever;
     }
 }
