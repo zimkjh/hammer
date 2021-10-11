@@ -11,17 +11,21 @@ public class GameManager : MonoBehaviour
     public Text scoreText;
     public bool feverTime;
     public Text leaderBoardText;
+    public GameObject ready;
+    public GameObject go;
+    public GameObject readyPanel;
+    private int totalScore = 0;
     private float feverTimer;
     private bool startedFeverTime;
     private string maxScoreKey = "maxScore";
     private List<int> savedMaxScores = new List<int> { 0, 0, 0, 0, 0 };
     private float feverTrigger;
     public bool isGameOver = false;
+    public bool isReady = true;
+    private float readyTime = 1f;
 
     public static GameManager I;
 
-    int totalScore = 0;
-    float limit = 60f;
 
     private void Awake()
     {
@@ -40,20 +44,29 @@ public class GameManager : MonoBehaviour
     void initGame()
     {
         Time.timeScale = 1.0f;
-        limit = 60.0f;
         totalScore = 0;
         startedFeverTime = false;
         feverTimer = 3f;
         feverTrigger = 0f;
         isGameOver = false;
+        isReady = true;
+        readyTime = 1f;
     }
     void Update()
     {
-        limit -= Time.deltaTime;
-        if (limit < 0)
+        if (isReady)
         {
-            limit = 0.0f;
-            GameOver();
+            readyTime -= Time.deltaTime;
+            if (readyTime < 0.5f)
+            {
+                ready.SetActive(false);
+                go.SetActive(true);
+            }
+            if (readyTime < 0f)
+            {
+                readyPanel.SetActive(false);
+                isReady = false;
+            }
         }
         if (feverTrigger > 100f && !startedFeverTime)
         {
