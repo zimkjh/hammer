@@ -8,7 +8,6 @@ public class GameManager : MonoBehaviour
 {
     public GameObject block;
     public GameObject panel;
-    public List<GameObject> blockList;
     public Text scoreText;
     public bool feverTime;
     public Text leaderBoardText;
@@ -28,7 +27,7 @@ public class GameManager : MonoBehaviour
     {
         I = this;
         savedMaxScores = new List<int>();
-        for(int i = 0; i < 5; i++)
+        for (int i = 0; i < 5; i++)
         {
             savedMaxScores.Add(PlayerPrefs.GetInt(maxScoreKey + "_" + i, 0));
         }
@@ -103,7 +102,7 @@ public class GameManager : MonoBehaviour
         isGameOver = true;
         GameObject.Find("feverbar").GetComponent<Renderer>().enabled = false;
         GameObject.Find("feverGauge").GetComponent<Renderer>().enabled = false;
-        GameObject.Find("MainScore").SetActive(false); 
+        GameObject.Find("MainScore").SetActive(false);
         panel.SetActive(true);
         Time.timeScale = 0;
         if (savedMaxScores[4] < totalScore)
@@ -124,7 +123,7 @@ public class GameManager : MonoBehaviour
             int scoreLength = savedMaxScores[i].ToString().Length;
             leaderBoardText.text += new string('.', 11 - scoreLength);
             leaderBoardText.text += (" " + savedMaxScores[i]);
-            if(i < 4)
+            if (i < 4)
             {
                 leaderBoardText.text += "\n";
             }

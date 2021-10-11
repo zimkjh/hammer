@@ -437,7 +437,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   block: {fileID: 4734822495995431689, guid: 5dd5ea4b511fa4de88ea78fec9941306, type: 3}
   panel: {fileID: 158618000}
-  blockList: []
   scoreText: {fileID: 1554087135}
   feverTime: 0
   leaderBoardText: {fileID: 524433238}
