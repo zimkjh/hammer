@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     public static GameManager I;
 
     int totalScore = 0;
-    float limit = 50f;
+    float limit = 60f;
 
     private void Awake()
     {
@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
     void initGame()
     {
         Time.timeScale = 1.0f;
-        limit = 50.0f;
+        limit = 60.0f;
         totalScore = 0;
         startedFeverTime = false;
         feverTimer = 3f;
@@ -54,8 +54,7 @@ public class GameManager : MonoBehaviour
         if (limit < 0)
         {
             limit = 0.0f;
-            panel.SetActive(true);
-            Time.timeScale = 0;
+            GameOver();
         }
         if (feverTrigger > 100f && !startedFeverTime)
         {
@@ -71,7 +70,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            feverTrigger -= 0.02f * Mathf.Sqrt(totalScore);
+            feverTrigger = Mathf.Max(0, feverTrigger - 0.02f * Mathf.Sqrt(totalScore));
             FeverGauge.I.changePercent(feverTrigger);
         }
         if (feverTimer <= 0f)
@@ -93,7 +92,7 @@ public class GameManager : MonoBehaviour
     }
     public void addFeverTrigger()
     {
-        feverTrigger += 10f;
+        feverTrigger += 5f;
     }
     public void retry()
     {
